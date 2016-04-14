@@ -12,7 +12,7 @@ body {
 .ca-menu{
     padding: 0 0 0 48px;
     margin: 20px auto;
-    width: 1020px;
+    width: 100%;
 }
 .ca-menu li{
     width: 230px;
@@ -156,7 +156,7 @@ li a:hover {
 .col-menu-button {
   padding-left: 0px;
   padding-right: 0px;
-  margin-right: -45px;
+  margin-right: 0px;
 }
 
 .menu-form {
@@ -181,7 +181,7 @@ li a:hover {
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
-  display: flex;
+  display: inline-flex;
   margin-top: 5%;
 
   /* Align the bootstrap's container vertically */
