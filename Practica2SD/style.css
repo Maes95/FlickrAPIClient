@@ -4,6 +4,11 @@
     font-weight: normal;
     font-style: normal;
 }
+
+body {
+  background-color: #2F3238;
+}
+
 .ca-menu{
     padding: 0 0 0 48px;
     margin: 20px auto;
@@ -12,7 +17,7 @@
 .ca-menu li{
     width: 230px;
     height: 230px;
-    border: 10px solid #f6f6f6;
+    border: 10px solid #B6B6B6;
     overflow: hidden;
     position: relative;
     float:left;
@@ -43,14 +48,12 @@
 }
 .ca-icon{
     font-family: 'WebSymbolsRegular', cursive;
-    font-size: 40px;
-    color: #f6f6f6;;
-    line-height: 60px;
+    font-size: 20px;
+    color: #D4D4D4;
+    line-height: 80px;
     position: absolute;
     width: 100%;
     height: 60px;
-    left: 0px;
-    top: 30px;
     text-align: center;
     -webkit-transition: all 400ms linear;
     -moz-transition: all 400ms linear;
@@ -59,22 +62,23 @@
     transition: all 400ms linear;
 }
 .ca-main{
-    font-size: 24px;
+    font-size: 10px;
     position: absolute;
-    top: 110px;
+    top: 45%;
     height: 80px;
     width: 170px;
     left: 50%;
     margin-left: -85px;
     opacity: 0.8;
     text-align: center;
-    color: #555;
+    color: #383838;
+    font-weight: bold;
 }
 .ca-sub{
     display: none;
 }
 .ca-menu li:hover{
-    border-color: #333;
+    border-color: #2F3238;
     z-index: 999;
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
@@ -83,14 +87,14 @@
     transform: scale(1.1);
 }
 .ca-menu li:hover .ca-icon{
-    color: #000;
-    font-size: 50px;
-    text-shadow: 0px 0px 1px #000;
+    color: #2F3238;
+    font-size: 25px;
+    text-shadow: 0px 0px 1px #2F3238;
     -webkit-animation: moveFromBottom 300ms ease;
     -moz-animation: moveFromBottom 400ms ease;
 }
 .ca-menu li:hover .ca-main{
-    color: #000;
+    color: #2F3238;
     -webkit-animation: moveFromBottom 500ms ease;
     -moz-animation: moveFromBottom 500ms ease;
     -ms-animation: moveFromBottom 500ms ease;
@@ -128,7 +132,72 @@
 }
 
 .menu-item {
-  width: 160px !important;
-  height: 160px !important;
-  margin-left: -30px !important;
+  width: 110px !important;
+  height: 110px !important;
+  margin-left: 5px !important;
+}
+#fila-menu {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+li a:hover {
+  cursor: pointer;
+}
+
+#boton-enviar {
+  display: none;
+  margin-top: -40px;
+  margin-left: 20px;
+  background-color: #26A69A;
+  border-color: #26A69A;
+}
+
+.col-menu-button {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-right: -45px;
+}
+
+.menu-form {
+  display: none;
+}
+
+.menos-altura {
+  margin-top: -25px !important;
+}
+
+#row-menu {
+  background-color: #546E7A;
+  -webkit-box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+  -moz-box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+}
+
+.vertical-center {
+
+  /* Make it a flex container */
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  margin-top: 5%;
+
+  /* Align the bootstrap's container vertically */
+    -webkit-box-align : center;
+  -webkit-align-items : center;
+       -moz-box-align : center;
+       -ms-flex-align : center;
+          align-items : center;
+
+  /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
+     hence the bootstrap's container won't be aligned to the center anymore.
+
+     Therefore, we should use the following declarations to get it centered again */
+         -webkit-box-pack : center;
+            -moz-box-pack : center;
+            -ms-flex-pack : center;
+  -webkit-justify-content : center;
+          justify-content : center;
 }
