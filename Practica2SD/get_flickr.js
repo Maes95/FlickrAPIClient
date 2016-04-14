@@ -1,8 +1,17 @@
-// Al cargar el documento
-
-(function() {
-    getPhotos();
-})();
+function getImages(){
+  // Query type indica el tipo de busqueda (Fecha de captura, tamaño, titulo ...) para poder acceder al valor de su formulario
+  var input = query_type+" :input";
+  var value;
+  if (query_type == '#tamanyo-form'){
+    // En el caso del tamaño, tendremos que recoger 2 parámetros
+  }else{
+    value = $(input).val();
+  }
+  console.log(value);
+  // Borramos el resultado anterior
+  $( ".grid__item").remove();
+  getPhotos();
+}
 
 
 // Funcion que carga las fotos
@@ -34,7 +43,6 @@ function getPhotos() {
             });
             // Una vez cargadas todas las fotos, se añaden animaciones
             setAnimation();
-            //borrar());
         });
 }
 
@@ -65,6 +73,7 @@ function getHtml(url_img, size, msg) {
     html += '</div>';
     return html;
 }
+
 
 // Funcion para activar las animaciones para cada imagen
 
@@ -141,34 +150,4 @@ function setAnimation() {
             });
         }
     });
-}
-
-function menuFunc(e) {
-		$('#boton-enviar').removeClass('menos-altura');
-		$('#boton-enviar').show(300);
-    switch (e.id) {
-        case 'fecha-captura-button':
-            $('.menu-form').hide(300);
-            $('#fecha-captura-form').show(300);
-            break;
-        case 'tamanyo-button':
-            $('.menu-form').hide(300);
-            $('#tamanyo-form').show(300);
-						$('#boton-enviar').addClass('menos-altura');
-            break;
-        case 'titulo-button':
-            $('.menu-form').hide(300);
-            $('#titulo-form').show(300);
-            break;
-				case 'etiquetas-button':
-            $('.menu-form').hide(300);
-            $('#etiquetas-form').show(300);
-            break;
-        case 'fecha-subida-button':
-            $('.menu-form').hide(300);
-            $('#fecha-subida-form').show(300);
-            break;
-        default:
-    }
-
 }
