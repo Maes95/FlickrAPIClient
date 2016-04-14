@@ -11,10 +11,9 @@ $(function(){
     format: "json"
   },
   function(data) {
-
     $.each(data.photos.photo, function(i,photo){
       $("<img />").attr("src", "https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+"_m.jpg").appendTo("#images");
-    console.log("https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+"_o.(jpg|gif|png)");
+    console.log("https://farm"+photo.farm+".staticflickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+"_m.jpg");
     });
   });
 });
