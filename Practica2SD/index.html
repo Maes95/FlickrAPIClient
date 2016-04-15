@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 
@@ -35,36 +34,50 @@
 </head>
 
 <body class="demo-6">
-	<header><!-- EL MENU SE RENDERIZA AQUI --></header>
-	<div class="container">
-		<div class="content">
-
-			<!-- FOTOS PEQUEÑAS -->
-			<div id="#contenedor_imagenes" class="grid sequenced images">
-				<!-- AQUI SE CARGARÁN LAS FOTOS -->
-			</div>
-			<!-- FIN FOTOS PEQUEÑAS -->
-
-			<!-- FOTO GRANDE -->
-			<div class="preview">
-				<button class="action action--close"><i class="fa fa-times"></i><span class="text-hidden">Close</span></button>
-				<div class="description description--preview"></div>
-			</div>
-			<!-- FIN FOTO GRANDE -->
-
+	<div id="wrapper">
+		<div id="header">
+			<header>
+				<!-- EL MENU SE RENDERIZA AQUI -->
+			</header>
 		</div>
+		<div id="content">
+			<div class="container">
+				<div class="content">
+
+					<!-- FOTOS PEQUEÑAS -->
+					<div id="#contenedor_imagenes" class="grid sequenced images">
+						<!-- AQUI SE CARGARÁN LAS FOTOS -->
+					</div>
+					<!-- FIN FOTOS PEQUEÑAS -->
+
+					<!-- FOTO GRANDE -->
+					<div class="preview">
+						<button class="action action--close"><i class="fa fa-times"></i><span class="text-hidden">Close</span></button>
+						<div class="description description--preview"></div>
+					</div>
+					<!-- FIN FOTO GRANDE -->
+
+				</div>
+			</div>
+		</div>
+
+		<div id="footer">
+			<div class="col-md-6 col-sm-6">
+				<p class="footer-text"><a href="https://github.com/Maes95/Practica2SD.git"><i class="fa fa-github icon-github"></i></a>Michel Maes Bermejo - Pablo Fuente Pérez</p>
+			</div>
+			<div class="col-md-6 col-sm-6">
+				<p class="footer-text pullea-right">Sistemas Distribuidos - URJC</p>
+			</div>
+		</div>
+		<!-- SCRIPTS ANIMACIONES -->
+
+		<script src="resources/js/menu.js"></script>
+		<script src="resources/js/imagesloaded.pkgd.min.js"></script>
+		<script src="resources/js/masonry.pkgd.min.js"></script>
+		<script src="resources/js/classie.js"></script>
+		<script src="resources/js/main.js"></script>
+		<script src="resources/js/transition.js"></script>
 	</div>
-
-
-	<!-- SCRIPTS ANIMACIONES -->
-
-	<script src="resources/js/menu.js"></script>
-	<script src="resources/js/imagesloaded.pkgd.min.js"></script>
-	<script src="resources/js/masonry.pkgd.min.js"></script>
-	<script src="resources/js/classie.js"></script>
-	<script src="resources/js/main.js"></script>
-	<script src="resources/js/transition.js"></script>
-
 </body>
 
 </html>
