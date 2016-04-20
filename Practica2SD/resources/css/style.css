@@ -272,3 +272,10 @@ a li:hover {
     	float: right;
     }
 }
+
+
+@media screen and (min-width: 992px){
+   .search-fields {
+      margin-top: 60px !important;
+   }
+}

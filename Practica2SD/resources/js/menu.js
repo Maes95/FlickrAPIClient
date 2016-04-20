@@ -123,7 +123,7 @@ var my_header = '<div id="row-menu" class="row">'
     +'</ul>'
   +'</div>'
 
-  +'<div class="col-md-6 col-xs-12 vertical-center">'
+  +'<div class="col-md-6 col-xs-12 vertical-center search-fields">'
 
     +'<div id="fecha-captura-form" class="form-control-wrapper menu-form">'
       +'<div class="form-group">'
