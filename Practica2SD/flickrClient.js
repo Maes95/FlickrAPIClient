@@ -44,7 +44,7 @@ function getImages(){
   // Borramos el resultado anterior
   $( ".grid__item" ).remove();
   $( "img" ).remove();
-  
+
   // Cargamos nuevos resultados (Por defecto)
   getPhotos();
 }
@@ -54,8 +54,7 @@ function getImages(){
 
 function getPhotos() {
 
-    url = "https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=907dea022b0dfc2ec993df236bc0fe6c&user_id=141769805%40N07&format=json&nojsoncallback=1";
-
+    url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b8a6b59c6a22e88bf223c7cfa1ffde05&user_id=141769805%40N07&tags=Perezoso&format=json&nojsoncallback=1";
     url_getInfo = "";
 
     $.getJSON(url, {
@@ -64,6 +63,7 @@ function getPhotos() {
             format: "json"
         },
         function(data) {
+            console.log(data);
             $.each(data.photos.photo, function(i, photo) {
 
                 var msg = photo.title.substr(0, 1).toUpperCase() + photo.title.substr(1);
