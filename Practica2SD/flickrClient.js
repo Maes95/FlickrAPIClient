@@ -1,4 +1,3 @@
-
 // Funcion que recoge los valores de la búsqueda (Se activa en el botón "Enviar" del menu)
 
 function getImages(){
@@ -10,7 +9,11 @@ function getImages(){
 
       // BUSQUEDA POR FECHA DE CAPTURA
       case '#fecha-captura-form':
-          console.log("Fecha captura " + value);
+          var inputs = $(query_type).find("input");
+          var minTakenDate = inputs[0].value;
+          var maxTakenDate = inputs[1].value;
+          console.log("min-taken-date " + minTakenDate);
+          console.log("max-taken-date " + maxTakenDate);
           break;
 
       // BUSQUEDA POR TAMAÑO
@@ -25,17 +28,23 @@ function getImages(){
 
       // BUSQUEDA POR TITULO
       case '#titulo-form':
+          var texto = value;
           console.log("Titulo " + value);
           break;
 
       // BUSQUEDA POR ETIQUETAS
 			case '#etiquetas-form':
+          var etiquetas = value;
           console.log("Etiquetas " + value);
           break;
 
       // BUSQUEDA POR FECHA DE SUBIDA
       case '#fecha-subida-form':
-          console.log("Fecha subida " + value);
+          var inputs = $(query_type).find("input");
+          var minUploadDate = inputs[0].value;
+          var maxUploadDate = inputs[1].value;
+          console.log("min-upload-date " + minUploadDate);
+          console.log("max-upload-date " + maxUploadDate);
           break;
 
       default: console.error("ERROR: Búsqueda no valida");
@@ -46,24 +55,31 @@ function getImages(){
   $( "img" ).remove();
 
   // Cargamos nuevos resultados (Por defecto)
-  getPhotos();
+  var variable = {
+          tags: etiquetas,
+          text: texto,
+          min_taken_date: minTakenDate,
+          max_taken_date:	maxTakenDate,
+          min_upload_date: minUploadDate,
+          max_upload_date: maxUploadDate,
+          format: "json"
+      };
+
+  getPhotos(variable);
 }
 
 
 // Funcion que carga las fotos
 
-function getPhotos() {
+function getPhotos(variable) {
 
-    url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b8a6b59c6a22e88bf223c7cfa1ffde05&user_id=141769805%40N07&tags=Perezoso&format=json&nojsoncallback=1";
+    url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + api_key + "&user_id=" + user_id + "&format=json&nojsoncallback=1";
     url_getInfo = "";
 
-    $.getJSON(url, {
-            tags: "jquery",
-            tagmode: "any",
-            format: "json"
-        },
+    $.getJSON(url, variable,
         function(data) {
             console.log(data);
+            console.log(url);
             $.each(data.photos.photo, function(i, photo) {
 
                 var msg = photo.title.substr(0, 1).toUpperCase() + photo.title.substr(1);
