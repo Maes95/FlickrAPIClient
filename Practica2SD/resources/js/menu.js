@@ -4,6 +4,11 @@
       weekStart: 0,
       time: false
     });
+    $('.menu-form').keypress(function(e) {
+      if (e.which == 13) {
+        getImages();
+      }
+    });
 })();
 
 var query_type = "none";
