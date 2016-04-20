@@ -22,7 +22,7 @@ body {
 .ca-menu li{
     width: 230px;
     height: 230px;
-    border: 10px solid #B6B6B6;
+    border: 9px solid #B6B6B6;
     overflow: hidden;
     position: relative;
     float:left;
@@ -52,9 +52,9 @@ body {
 }
 .ca-icon{
     font-family: 'WebSymbolsRegular', cursive;
-    font-size: 20px;
+    font-size: 15px;
     color: #D4D4D4;
-    line-height: 80px;
+    line-height: 60px;
     position: absolute;
     width: 100%;
     height: 60px;
@@ -66,9 +66,9 @@ body {
     transition: all 400ms linear;
 }
 .ca-main{
-    font-size: 10px;
+    font-size: 9px;
     position: absolute;
-    top: 45%;
+    top: 38%;
     height: 80px;
     width: 170px;
     left: 50%;
@@ -92,7 +92,7 @@ body {
 }
 .ca-menu li:hover .ca-icon{
     color: #2F3238;
-    font-size: 25px;
+    font-size: 19px;
     text-shadow: 0px 0px 1px #2F3238;
     -webkit-animation: moveFromBottom 300ms ease;
     -moz-animation: moveFromBottom 400ms ease;
@@ -136,8 +136,8 @@ body {
 }
 
 .menu-item {
-  width: 110px !important;
-  height: 110px !important;
+  width: 90px !important;
+  height: 90px !important;
   margin-left: 5px !important;
 }
 #fila-menu {
