@@ -1,5 +1,7 @@
 // Funcion que recoge los valores de la búsqueda (Se activa en el botón "Filtrar" del menu)
 
+$(function(){getPhotos();});
+
 var filtros = {
   tags: undefined,
   text: undefined,
@@ -70,20 +72,23 @@ function getImages() {
   // Cargamos nuestros filtros (los no usados toman el valor undefined)
 
 
-  checkFilters();
+
   // Cargamos los filtros en la petición
   getPhotos(filtros);
+  checkFilters();
 }
 
 function getImagesAndHideForm (){
   $(".form-control-wrapper.menu-form").hide(300);
   $("#boton-enviar").hide(300);
   getImages();
+  $("input").each(function() {resetForm($(this));});
 }
 
 // Funcion que carga las fotos
 
 function getPhotos(filtros) {
+  console.log(filtros);
   numImagenes = 0;
 
   url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + api_key + "&user_id=" + user_id + "&format=json&nojsoncallback=1";
@@ -132,30 +137,45 @@ function getHtml(url_img, size, msg) {
 }
 
 function checkFilters() {
-  if (filtros.min_taken_date === undefined && filtros.max_taken_date === undefined)
+
+  if (filtros.min_taken_date === undefined && filtros.max_taken_date === undefined){
     $('#fechaCapturaTag').removeClass("display-inline-tag");
-  else
+  }
+  else {
+    var s = getFormattedtDate("taken");
+    $("#fechaCapturaTagText").text(s[0]  + " | " + s[1]);
     $('#fechaCapturaTag').addClass("display-inline-tag");
+  }
 
-  if (filtros.text === undefined)
+  if (filtros.text === undefined){
     $('#tituloTag').removeClass("display-inline-tag");
-  else
+  }
+  else{
+    $("#tituloTagText").text(filtros.text);
     $('#tituloTag').addClass("display-inline-tag");
+  }
 
-  if (filtros.tags === undefined)
+  if (filtros.tags === undefined){
     $('#etiquetasTag').removeClass("display-inline-tag");
-  else
+  }
+  else{
+    $("#etiquetasTagText").text(filtros.tags);
     $('#etiquetasTag').addClass("display-inline-tag");
+  }
 
   /*if (!filtro_favoritas)
     $('#favoritasTag').removeClass("display-inline-tag");
   else
     $('#favoritasTag').addClass("display-inline-tag");*/
 
-  if (filtros.min_upload_date === undefined && filtros.max_upload_date === undefined)
+  if (filtros.min_upload_date === undefined && filtros.max_upload_date === undefined){
     $('#fechaSubidaTag').removeClass("display-inline-tag");
-  else
+  }
+  else{
+    var s = getFormattedtDate("upload");
+    $("#fechaSubidaTagText").text(s[0] + " | " + s[1]);
     $('#fechaSubidaTag').addClass("display-inline-tag");
+  }
 }
 
 function tagToFalse(tag){
@@ -185,4 +205,35 @@ function tagToFalse(tag){
 
 function resetForm (form){
   $(form).val("");
+}
+
+function getFormattedtDate(t){
+  var s = [];
+  switch(t){
+    case "taken":
+      if (filtros.min_taken_date === ""){
+        s[0] = "Desde siempre";
+      } else{
+        s[0] = filtros.min_taken_date;
+      }
+      if (filtros.max_taken_date === ""){
+        s[1] = "Hasta ahora";
+      } else{
+        s[1] = filtros.max_taken_date;
+      }
+      break;
+    case "upload":
+      if (filtros.min_upload_date === ""){
+        s[0] = "Desde siempre";
+      } else{
+        s[0] = filtros.min_upload_date;
+      }
+      if (filtros.max_upload_date === ""){
+        s[1] = "Hasta ahora";
+      } else{
+        s[1] = filtros.max_upload_date;
+      }
+      break;
+  }
+  return s;
 }

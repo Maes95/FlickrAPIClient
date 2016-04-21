@@ -331,3 +331,8 @@ a li:hover {
 #fecha-subida-form{
   margin-bottom: 15px;
 }
+
+.tag-icon {
+  font-size: 1.7em;
+  margin-right: 5px;
+}
