@@ -1,5 +1,5 @@
 (function() {
-    setHeader();
+    //setHeader();
     $('.date-picker-input').bootstrapMaterialDatePicker({
       weekStart: 0,
       time: false

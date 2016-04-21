@@ -152,7 +152,6 @@ a li:hover {
 #boton-enviar {
   display: none;
   margin-top: -40px;
-  margin-left: 20px;
   background-color: #26A69A;
   border-color: #26A69A;
 }
@@ -263,6 +262,10 @@ a li:hover {
 	margin-right: 20px;
 }
 
+.form-control-wrapper.menu-form{
+  width: 78%;
+}
+
 @media (max-width: 768px) {
     .footer-text {
         float: none !important;
@@ -273,9 +276,58 @@ a li:hover {
     }
 }
 
-
 @media screen and (min-width: 992px){
    .search-fields {
       margin-top: 60px !important;
    }
+}
+
+@media screen and (max-width: 991px){
+   .form-control-wrapper.menu-form{
+     width: auto;
+   }
+}
+
+
+.small-size {
+  font-size: 8px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.ui.label.filter-tag {
+  display: none;
+}
+
+#fila-filtros {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.display-inline-tag {
+  display: inline-block !important;
+}
+
+.reset-form-button {
+  font-size: 14px;
+  cursor: pointer;
+  float: right;
+  margin-top: 4px;
+}
+
+.control-label {
+  /*width: 100%;*/
+}
+
+.no-lateral-padings {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#fecha-captura-form{
+  margin-bottom: 15px;
+}
+
+#fecha-subida-form{
+  margin-bottom: 15px;
 }

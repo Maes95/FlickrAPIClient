@@ -1,4 +1,16 @@
-// Funcion que recoge los valores de la búsqueda (Se activa en el botón "Enviar" del menu)
+// Funcion que recoge los valores de la búsqueda (Se activa en el botón "Filtrar" del menu)
+
+var filtros = {
+  tags: undefined,
+  text: undefined,
+  min_taken_date: undefined,
+  max_taken_date: undefined,
+  min_upload_date: undefined,
+  max_upload_date: undefined,
+  format: "json"
+};
+
+var numImagenes = 0;
 
 function getImages() {
   // Query type indica el tipo de busqueda (Fecha de captura, tamaño, titulo ...) para poder acceder al valor de su formulario
@@ -10,41 +22,41 @@ function getImages() {
     // BUSQUEDA POR FECHA DE CAPTURA
     case '#fecha-captura-form':
       var inputs = $(query_type).find("input");
-      var minTakenDate = inputs[0].value;
-      var maxTakenDate = inputs[1].value;
-      console.log("min-taken-date " + minTakenDate);
-      console.log("max-taken-date " + maxTakenDate);
+      filtros.min_taken_date = inputs[0].value;
+      filtros.max_taken_date = inputs[1].value;
+      console.log("min-taken-date " + filtros.min_taken_date);
+      console.log("max-taken-date " + filtros.max_taken_date);
       break;
 
     // BUSQUEDA POR TAMAÑO
-    case '#tamanyo-form':
+    /*case '#tamanyo-form':
       // En el caso del tamaño, tendremos que recoger 2 parámetros
       var inputs = $(query_type).find("input");
       var width  = inputs[0].value;
       var height = inputs[1].value;
-      console.log("Anchura " + a);
-      console.log("Altura " + b);
-      break;
+      console.log("Anchura " + width);
+      console.log("Altura " + height);
+      break;*/
 
     // BUSQUEDA POR TITULO
     case '#titulo-form':
-      var texto = value;
-      console.log("Titulo " + value);
+      filtros.text = value;
+      console.log("Titulo " + filtros.text);
       break;
 
     // BUSQUEDA POR ETIQUETAS
     case '#etiquetas-form':
-      var etiquetas = value;
-      console.log("Etiquetas " + value);
+      filtros.tags = value;
+      console.log("Etiquetas " + filtros.tags);
       break;
 
     // BUSQUEDA POR FECHA DE SUBIDA
     case '#fecha-subida-form':
       var inputs = $(query_type).find("input");
-      var minUploadDate = inputs[0].value;
-      var maxUploadDate = inputs[1].value;
-      console.log("min-upload-date " + minUploadDate);
-      console.log("max-upload-date " + maxUploadDate);
+      filtros.min_upload_date = inputs[0].value;
+      filtros.max_upload_date = inputs[1].value;
+      console.log("min-upload-date " + filtros.min_upload_date);
+      console.log("max-upload-date " + filtros.max_upload_date);
       break;
 
     default:
@@ -56,23 +68,23 @@ function getImages() {
   $("img").remove();
 
   // Cargamos nuestros filtros (los no usados toman el valor undefined)
-  var filtros = {
-    tags: etiquetas,
-    text: texto,
-    min_taken_date: minTakenDate,
-    max_taken_date: maxTakenDate,
-    min_upload_date: minUploadDate,
-    max_upload_date: maxUploadDate,
-    format: "json"
-  };
+
+
+  checkFilters();
   // Cargamos los filtros en la petición
   getPhotos(filtros);
 }
 
+function getImagesAndHideForm (){
+  $(".form-control-wrapper.menu-form").hide(300);
+  $("#boton-enviar").hide(300);
+  getImages();
+}
 
 // Funcion que carga las fotos
 
 function getPhotos(filtros) {
+  numImagenes = 0;
 
   url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + api_key + "&user_id=" + user_id + "&format=json&nojsoncallback=1";
 
@@ -81,6 +93,7 @@ function getPhotos(filtros) {
       console.log(data);
       console.log(url);
       $.each(data.photos.photo, function(i, photo) {
+        numImagenes++;
 
         var msg = photo.title.substr(0, 1).toUpperCase() + photo.title.substr(1);
 
@@ -116,4 +129,60 @@ function getHtml(url_img, size, msg) {
   html += '</a>';
   html += '</div>';
   return html;
+}
+
+function checkFilters() {
+  if (filtros.min_taken_date === undefined && filtros.max_taken_date === undefined)
+    $('#fechaCapturaTag').removeClass("display-inline-tag");
+  else
+    $('#fechaCapturaTag').addClass("display-inline-tag");
+
+  if (filtros.text === undefined)
+    $('#tituloTag').removeClass("display-inline-tag");
+  else
+    $('#tituloTag').addClass("display-inline-tag");
+
+  if (filtros.tags === undefined)
+    $('#etiquetasTag').removeClass("display-inline-tag");
+  else
+    $('#etiquetasTag').addClass("display-inline-tag");
+
+  /*if (!filtro_favoritas)
+    $('#favoritasTag').removeClass("display-inline-tag");
+  else
+    $('#favoritasTag').addClass("display-inline-tag");*/
+
+  if (filtros.min_upload_date === undefined && filtros.max_upload_date === undefined)
+    $('#fechaSubidaTag').removeClass("display-inline-tag");
+  else
+    $('#fechaSubidaTag').addClass("display-inline-tag");
+}
+
+function tagToFalse(tag){
+  switch(tag){
+    case 'filtro_fecha_captura':
+      filtros.min_taken_date = undefined;
+      filtros.max_taken_date = undefined;
+      break;
+    case 'filtro_titulo':
+      filtros.text = undefined;
+      break;
+    case 'filtro_etiquetas':
+      filtros.tags = undefined;
+      break;
+    /*case 'filtro_favoritas':
+
+
+      break;*/
+    case 'filtro_fecha_subida':
+      filtros.min_upload_date = undefined;
+      filtros.max_upload_date = undefined;
+      break;
+  }
+  query_type = "none";
+  getImages();
+}
+
+function resetForm (form){
+  $(form).val("");
 }
