@@ -48,10 +48,10 @@ function getImages() {
     // BUSQUEDA POR LOCALIZACION
     case '#localizacion-form':
       // En el caso del tamaño, tendremos que recoger 2 parámetros
-      var longSW = Math.min(map.getBounds().getSouthWest().lng(), -180);
-      var latSW = Math.max(map.getBounds().getSouthWest().lat(), -90);
-      var longNE = Math.min(map.getBounds().getNorthEast().lng(), 180);
-      var latNE = Math.max(map.getBounds().getNorthEast().lat(), 90);
+      var longSW = Math.min(rectangle.getBounds().getSouthWest().lng(), -180);
+      var latSW = Math.max(rectangle.getBounds().getSouthWest().lat(), -90);
+      var longNE = Math.min(rectangle.getBounds().getNorthEast().lng(), 180);
+      var latNE = Math.max(rectangle.getBounds().getNorthEast().lat(), 90);
       filtros.bbox = longSW + "," +  latSW + "," + longNE + "," + latNE;
       break;
 
@@ -93,7 +93,7 @@ function getImages() {
 
 function getImagesAndHideForm (){
   $(".form-control-wrapper.menu-form").hide(300);
-  $("#map_canvas").hide(300);
+  $("#map").hide(300);
   $("#boton-enviar").hide(300);
   getImages();
   $("input").each(function() {resetForm($(this));});

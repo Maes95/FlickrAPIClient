@@ -154,7 +154,7 @@
 							</div>
 						</div>
 
-						<div id="map_canvas"> </div>
+						<div id="map"> </div>
 
 						<button id="boton-enviar" onClick="getImagesAndHideForm()" class="btn btn-info">Filtrar</button>
 
@@ -198,39 +198,52 @@
 		</div>
 
 		<script>
+			// This example adds a user-editable rectangle to the map.
+			// When the user changes the bounds of the rectangle,
+			// an info window pops up displaying the new bounds.
+
+			var rectangle;
 			var map;
-			function initialize() {
-				var mapOptions = {
-					zoom: 12,
-					center: new google.maps.LatLng(40.33645042733599, -3.8705631670922003),
-					mapTypeId: google.maps.MapTypeId.ROADMAP,
+			var infoWindow;
+
+			function initMap() {
+				map = new google.maps.Map(document.getElementById('map'), {
+					center: {
+						lat: 40.33665257937456,
+						lng: -3.87708088460652
+					},
+					zoom: 11,
 					panControl: false,
-					mapTypeControl: false,
-					scaleControl: true,
-					streetViewControl: false,
-					overviewMapControl: false,
-					rotateControl: true
+ 					scaleControl: true,
+ 					streetViewControl: false,
+ 					overviewMapControl: false,
+ 					rotateControl: true
+				});
+
+				var bounds = {
+					north: 40.33,
+					south: 40.25,
+					east: -3.8,
+					west: -3.87
 				};
 
-				  map = new google.maps.Map(document.getElementById('map_canvas'),
-					mapOptions);
+				// Define the rectangle and set its editable property to true.
+				rectangle = new google.maps.Rectangle({
+					bounds: bounds,
+					editable: true,
+					draggable: true
+				});
 
-			}; // end of initialize
+				rectangle.setMap(map);
 
-			function loadScript() {
-				var script = document.createElement('script');
-				script.type = 'text/javascript';
-				script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD0opNahZE7NYWM1FyCypBvByrBPifPsvM&&v=3&' +
-					'callback=initialize';
-				document.body.appendChild(script);
+				// Define an info window on the map.
+				infoWindow = new google.maps.InfoWindow();
 			}
-
-			function reloadMap(){
-				google.maps.event.trigger(map, 'resize');
-			}
-
-			addLoadEvent(loadScript);
+			// Show the new coordinates for the rectangle in an info window.
 		</script>
+
+		<script>function reloadMap(){google.maps.event.trigger(map, 'resize');}</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0opNahZE7NYWM1FyCypBvByrBPifPsvM&amp;callback=initMap&amp;signed_in=true" async="" defer=""></script>
 
 		<div id="footer">
 			<div class="col-md-6 col-sm-6">

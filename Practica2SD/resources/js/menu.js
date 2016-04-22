@@ -18,7 +18,7 @@ function menuFunc(e) {
 		$('#boton-enviar').removeClass('menos-altura');
 		$('#boton-enviar').show(300);
     $('.menu-form').hide(300);
-    $('#map_canvas').hide(300);
+    $('#map').hide(300);
     switch (e.id) {
         case 'fecha-captura-button':
             query_type = '#fecha-captura-form';
@@ -26,7 +26,7 @@ function menuFunc(e) {
             break;
         case 'localizacion-button':
             query_type = '#localizacion-form';
-            $('#map_canvas').show(300);
+            $('#map').show(300);
             setTimeout(function() { reloadMap(); }, 500);
 						$('#boton-enviar').addClass('menos-altura');
             break;
