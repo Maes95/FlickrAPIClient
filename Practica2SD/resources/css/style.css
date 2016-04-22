@@ -5,13 +5,22 @@
     font-style: normal;
 }
 
+#map {
+  width:400px;
+  height:250px;
+  margin-top: -10px;
+  margin-bottom: 35px;
+  display: none;
+  border-radius: 2%;
+}
+
 html {
   height: 100%;
 }
 
 body {
   height: 100%;
-  background-color: #2F3238;
+  background-color: #1E1E1E !important;
 }
 
 .ca-menu{
@@ -22,7 +31,7 @@ body {
 .ca-menu li{
     width: 230px;
     height: 230px;
-    border: 10px solid #B6B6B6;
+    border: 9px solid #B6B6B6;
     overflow: hidden;
     position: relative;
     float:left;
@@ -52,9 +61,9 @@ body {
 }
 .ca-icon{
     font-family: 'WebSymbolsRegular', cursive;
-    font-size: 20px;
+    font-size: 15px;
     color: #D4D4D4;
-    line-height: 80px;
+    line-height: 60px;
     position: absolute;
     width: 100%;
     height: 60px;
@@ -66,9 +75,9 @@ body {
     transition: all 400ms linear;
 }
 .ca-main{
-    font-size: 10px;
+    font-size: 9px;
     position: absolute;
-    top: 45%;
+    top: 38%;
     height: 80px;
     width: 170px;
     left: 50%;
@@ -82,7 +91,7 @@ body {
     display: none;
 }
 .ca-menu li:hover{
-    border-color: #2F3238;
+    border-color: #1E1E1E;
     z-index: 999;
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
@@ -91,14 +100,14 @@ body {
     transform: scale(1.1);
 }
 .ca-menu li:hover .ca-icon{
-    color: #2F3238;
-    font-size: 25px;
-    text-shadow: 0px 0px 1px #2F3238;
+    color: #1E1E1E;
+    font-size: 19px;
+    text-shadow: 0px 0px 1px #1E1E1E;
     -webkit-animation: moveFromBottom 300ms ease;
     -moz-animation: moveFromBottom 400ms ease;
 }
 .ca-menu li:hover .ca-main{
-    color: #2F3238;
+    color: #1E1E1E;
     -webkit-animation: moveFromBottom 500ms ease;
     -moz-animation: moveFromBottom 500ms ease;
     -ms-animation: moveFromBottom 500ms ease;
@@ -136,13 +145,14 @@ body {
 }
 
 .menu-item {
-  width: 110px !important;
-  height: 110px !important;
+  width: 90px !important;
+  height: 90px !important;
   margin-left: 5px !important;
 }
 #fila-menu {
   margin-top: 20px;
   margin-bottom: 30px;
+  -webkit-transition: margin-top;
 }
 
 a li:hover {
@@ -152,7 +162,6 @@ a li:hover {
 #boton-enviar {
   display: none;
   margin-top: -40px;
-  margin-left: 20px;
   background-color: #26A69A;
   border-color: #26A69A;
 }
@@ -223,10 +232,10 @@ a li:hover {
 	position:absolute;
 	bottom:0;
 	left:0;
-	background-color: #2f3238;
-    -webkit-box-shadow: 0 -6px 6px -6px #171A20;
-    -moz-box-shadow: 0 -6px 6px -6px #171A20;
-    box-shadow: 0 -6px 6px -6px #171A20;
+	background-color: #1E1E1E;
+    -webkit-box-shadow: 0 -6px 6px -6px #101216;
+    -moz-box-shadow: 0 -6px 6px -6px #101216;
+    box-shadow: 0 -6px 6px -6px #101216;
     border-color: #4D515A;
 }
 
@@ -263,6 +272,10 @@ a li:hover {
 	margin-right: 20px;
 }
 
+.form-control-wrapper.menu-form{
+  width: 78%;
+}
+
 @media (max-width: 768px) {
     .footer-text {
         float: none !important;
@@ -271,4 +284,69 @@ a li:hover {
     .icon-github {
     	float: right;
     }
+}
+
+@media screen and (min-width: 992px){
+   .search-fields {
+      margin-top: 60px !important;
+   }
+}
+
+@media screen and (max-width: 991px){
+   .form-control-wrapper.menu-form{
+     width: auto;
+   }
+}
+
+
+.small-size {
+  font-size: 8px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.ui.label.filter-tag {
+  display: none;
+}
+
+#fila-filtros {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.display-inline-tag {
+  display: inline-block !important;
+}
+
+.reset-form-button {
+  font-size: 14px;
+  cursor: pointer;
+  float: right;
+  margin-top: 4px;
+}
+
+.control-label {
+  /*width: 100%;*/
+}
+
+.no-lateral-padings {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#fecha-captura-form{
+  margin-bottom: 15px;
+}
+
+#fecha-subida-form{
+  margin-bottom: 15px;
+}
+
+.tag-icon {
+  font-size: 1.7em;
+  margin-right: 5px;
+}
+
+.add-right-margin {
+  margin-right: 15px;
 }

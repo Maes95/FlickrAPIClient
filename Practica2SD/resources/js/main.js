@@ -4,7 +4,7 @@
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Copyright 2015, Codrops
  * http://www.codrops.com
  */
@@ -35,7 +35,7 @@
 	/**
 	 * some helper functions
 	 */
-	
+
 	function throttle(fn, delay) {
 		var allowSample = true;
 
@@ -57,7 +57,7 @@
 	}
 
 	function extend( a, b ) {
-		for( var key in b ) { 
+		for( var key in b ) {
 			if( b.hasOwnProperty( key ) ) {
 				a[key] = b[key];
 			}
@@ -72,7 +72,7 @@
 		this.gridEl = el;
 		this.options = extend( {}, this.options );
 		extend( this.options, options );
-		
+
 		this.items = [].slice.call(this.gridEl.querySelectorAll('.grid__item'));
 		this.previewEl = nextSibling(this.gridEl);
 		this.isExpanded = false;
@@ -132,10 +132,10 @@
 			var touchend = function(ev) {
 					ev.preventDefault();
 					self._openItem(ev, item);
-					item.removeEventListener('touchend', touchend);	
+					item.removeEventListener('touchend', touchend);
 				},
 				touchmove = function(ev) {
-					item.removeEventListener('touchend', touchend);	
+					item.removeEventListener('touchend', touchend);
 				},
 				manageTouch = function() {
 					item.addEventListener('touchend', touchend);
@@ -155,7 +155,7 @@
 
 		// close expanded image
 		this.closeCtrl.addEventListener('click', function() {
-			self._closeItem(); 
+			self._closeItem();
 		});
 
 		window.addEventListener('resize', throttle(function(ev) {
@@ -181,7 +181,7 @@
 
 		// set the src of the original image element (large image)
 		this._setOriginal(item.querySelector('a').getAttribute('href'));
-		
+
 		// callback
 		this.options.onOpenItem(this, item);
 
@@ -205,8 +205,11 @@
 			z = Math.min( Math.min(win.width*Math.abs(this.options.imgPosition.x) - this.options.pagemargin, originalSize.width - this.options.pagemargin)/gridImg.offsetWidth, Math.min(win.height*Math.abs(this.options.imgPosition.y) - this.options.pagemargin, originalSize.height - this.options.pagemargin)/gridImg.offsetHeight );
 
 		// apply transform to the clone
+				//var z1 = Math.min(parseInt(this._getWinSize().width) - 50, this.originalImg.naturalWidth);
+				var z2 = Math.min(parseInt(this._getWinSize().height*(3/4)) - 50, this.originalImg.naturalHeight);
 		this.cloneImg.style.WebkitTransform = 'translate3d(' + dx + 'px, ' + dy + 'px, 0) scale3d(' + z + ', ' + z + ', 1)';
-		this.cloneImg.style.transform = 'translate3d(' + dx + 'px, ' + dy + 'px, 0) scale3d(' + z + ', ' + z + ', 1)';
+		//this.cloneImg.style.transform = 'translate3d(' + dx + 'px, ' + dy + 'px, 0) scale3d(' + z + ', ' + z + ', 1)';
+				this.cloneImg.style.transform = 'translate3d(' + dx + 'px, ' + dy + 'px, 0) scale3d(' + z2/this.cloneImg.height + ', ' + z2/this.cloneImg.height + ', 1)';
 
 		// add the description if any
 		var descriptionEl = item.querySelector('.description');
@@ -215,7 +218,7 @@
 		}
 
 		var self = this;
-		setTimeout(function() { 
+		setTimeout(function() {
 			// controls the elements inside the expanded view
 			classie.add(self.previewEl, 'preview--open');
 			// callback
@@ -239,8 +242,8 @@
 
 					self.isAnimating = false;
 				});
-				
-			});	
+
+			});
 		});
 	};
 
@@ -303,7 +306,7 @@
 
 		classie.remove(this.previewEl, 'preview--open');
 		classie.remove(this.previewEl, 'preview--image-loaded');
-		
+
 		// callback
 		this.options.onCloseItem(this, gridItem);
 
@@ -317,8 +320,8 @@
 			z = gridImg.offsetWidth/this.originalImg.offsetWidth;
 
 		this.originalImg.style.WebkitTransform = 'translate3d(' + dx + 'px, ' + dy + 'px, 0) scale3d(' + z + ', ' + z + ', 1)';
-		this.originalImg.style.transform = 'translate3d(' + dx + 'px, ' + dy + 'px, 0) scale3d(' + z + ', ' + z + ', 1)';	
-		
+		this.originalImg.style.transform = 'translate3d(' + dx + 'px, ' + dy + 'px, 0) scale3d(' + z + ', ' + z + ', 1)';
+
 		// once that's done..
 		onEndTransition(this.originalImg, function() {
 			// clear description

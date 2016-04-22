@@ -1,5 +1,5 @@
 (function() {
-    setHeader();
+    //setHeader();
     $('.date-picker-input').bootstrapMaterialDatePicker({
       weekStart: 0,
       time: false
@@ -17,31 +17,29 @@ function menuFunc(e) {
 
 		$('#boton-enviar').removeClass('menos-altura');
 		$('#boton-enviar').show(300);
+    $('.menu-form').hide(300);
+    $('#map').hide(300);
     switch (e.id) {
         case 'fecha-captura-button':
             query_type = '#fecha-captura-form';
-            $('.menu-form').hide(300);
             $('#fecha-captura-form').show(300);
             break;
-        case 'tamanyo-button':
-            query_type = '#tamanyo-form';
-            $('.menu-form').hide(300);
-            $('#tamanyo-form').show(300);
+        case 'localizacion-button':
+            query_type = '#localizacion-form';
+            $('#map').show(300);
+            setTimeout(function() { reloadMap(); }, 500);
 						$('#boton-enviar').addClass('menos-altura');
             break;
         case 'titulo-button':
             query_type = '#titulo-form';
-            $('.menu-form').hide(300);
             $('#titulo-form').show(300);
             break;
 				case 'etiquetas-button':
             query_type = '#etiquetas-form';
-            $('.menu-form').hide(300);
             $('#etiquetas-form').show(300);
             break;
         case 'fecha-subida-button':
             query_type = '#fecha-subida-form';
-            $('.menu-form').hide(300);
             $('#fecha-subida-form').show(300);
             break;
         default:
@@ -123,7 +121,7 @@ var my_header = '<div id="row-menu" class="row">'
     +'</ul>'
   +'</div>'
 
-  +'<div class="col-md-6 col-xs-12 vertical-center">'
+  +'<div class="col-md-6 col-xs-12 vertical-center search-fields">'
 
     +'<div id="fecha-captura-form" class="form-control-wrapper menu-form">'
       +'<div class="form-group">'
