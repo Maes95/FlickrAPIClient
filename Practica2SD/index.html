@@ -56,11 +56,11 @@
 							</div>
 
 							<div class="col-md-2 col-menu-button">
-								<a id="tamanyo-button" onmousedown="menuFunc(this)">
+								<a id="localizacion-button" onmousedown="menuFunc(this)">
 									<li class="menu-item">
-										<span class="ca-icon"><i class="fa fa-arrows-alt fa-2x option-button"></i></span>
+										<span class="ca-icon"><i class="fa fa-map-marker fa-2x option-button"></i></span>
 										<div class="ca-content">
-											<h2 class="ca-main">Tamaño</h2>
+											<h2 class="ca-main">Localización</h2>
 										</div>
 									</li>
 								</a>
@@ -127,28 +127,15 @@
 							</div>
 						</div>
 
-						<div id="tamanyo-form" class="form-control-wrapper menu-form">
-							<div class="form-group">
-								<div class="col-md-6">
-									<input type="number" class="form-control" id="photo-width" placeholder="px">
-									<label for="photo-width">Anchura</label>
-								</div>
-								<div class="col-md-6">
-									<input type="number" class="form-control" id="photo-height" placeholder="px">
-									<label for="photo-height">Altura</label>
-								</div>
-							</div>
-						</div>
-
 						<div id="titulo-form" class="form-control-wrapper menu-form">
-							<div class="form-group">
+							<div class="form-group add-right-margin">
 								<input type="text" class="form-control" id="titulo-text" placeholder="">
 								<label for="titulo-text">Palabras en el título</label>
 							</div>
 						</div>
 
 						<div id="etiquetas-form" class="form-control-wrapper menu-form">
-							<div class="form-group">
+							<div class="form-group add-right-margin">
 								<input type="text" class="form-control" id="etiquetas-text" placeholder="">
 								<label for="etiquetas-text">Etiquetas (separar por comas)</label>
 							</div>
@@ -166,17 +153,27 @@
 								</div>
 							</div>
 						</div>
-						<button id="boton-enviar" onClick="getImagesAndHideForm()" class="btn btn-info">Filtrar</button></div>
+
+						<div id="map_canvas"> </div>
+
+						<button id="boton-enviar" onClick="getImagesAndHideForm()" class="btn btn-info">Filtrar</button>
+
+					</div>
 				</div>
 			</header>
 		</div>
 
 		<div id="fila-filtros" class="row">
-			<div id="fechaCapturaTag" class="ui label filter-tag"><i class="fa fa-camera fa-2x tag-icon"></i><div id="fechaCapturaTagText" class="display-inline-tag">Fecha captura</div><i class="material-icons small-size" onclick="tagToFalse('filtro_fecha_captura')">close</i></div>
-			<div id="tituloTag" class="ui label filter-tag"><i class="fa fa-font fa-2x tag-icon"></i><div id="tituloTagText" class="display-inline-tag">Titulo</div><i class="material-icons small-size" onclick="tagToFalse('filtro_titulo')">close</i></div>
-			<div id="etiquetasTag" class="ui label filter-tag"><i class="fa fa-tags fa-2x tag-icon"></i><div id="etiquetasTagText" class="display-inline-tag">Etiquetas</div><i class="material-icons small-size" onclick="tagToFalse('filtro_etiquetas')">close</i></div>
-			<div id="favoritosTag" class="ui label filter-tag"><i class="fa fa-star fa-2x tag-icon"></i><div id="favoritosTagText" class="display-inline-tag">Favoritos</div><i class="material-icons small-size" onclick="tagToFalse('filtro_favoritas')">close</i></div>
-			<div id="fechaSubidaTag" class="ui label filter-tag"><i class="fa fa-cloud-upload fa-2x tag-icon"></i><div id="fechaSubidaTagText" class="display-inline-tag">Fecha subida</div><i class="material-icons small-size" onclick="tagToFalse('filtro_fecha_subida')">close</i></div>
+			<div id="fechaCapturaTag" class="ui label filter-tag"><i class="fa fa-camera fa-2x tag-icon"></i>
+				<div id="fechaCapturaTagText" class="display-inline-tag">Fecha captura</div><i class="material-icons small-size" onclick="tagToFalse('filtro_fecha_captura')">close</i></div>
+			<div id="tituloTag" class="ui label filter-tag"><i class="fa fa-font fa-2x tag-icon"></i>
+				<div id="tituloTagText" class="display-inline-tag">Titulo</div><i class="material-icons small-size" onclick="tagToFalse('filtro_titulo')">close</i></div>
+			<div id="etiquetasTag" class="ui label filter-tag"><i class="fa fa-tags fa-2x tag-icon"></i>
+				<div id="etiquetasTagText" class="display-inline-tag">Etiquetas</div><i class="material-icons small-size" onclick="tagToFalse('filtro_etiquetas')">close</i></div>
+			<div id="favoritosTag" class="ui label filter-tag"><i class="fa fa-star fa-2x tag-icon"></i>
+				<div id="favoritosTagText" class="display-inline-tag">Favoritos</div><i class="material-icons small-size" onclick="tagToFalse('filtro_favoritas')">close</i></div>
+			<div id="fechaSubidaTag" class="ui label filter-tag"><i class="fa fa-cloud-upload fa-2x tag-icon"></i>
+				<div id="fechaSubidaTagText" class="display-inline-tag">Fecha subida</div><i class="material-icons small-size" onclick="tagToFalse('filtro_fecha_subida')">close</i></div>
 		</div>
 
 		<div id="content">
@@ -200,6 +197,41 @@
 			</div>
 		</div>
 
+		<script>
+			var map;
+			function initialize() {
+				var mapOptions = {
+					zoom: 12,
+					center: new google.maps.LatLng(40.33645042733599, -3.8705631670922003),
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					panControl: false,
+					mapTypeControl: false,
+					scaleControl: true,
+					streetViewControl: false,
+					overviewMapControl: false,
+					rotateControl: true
+				};
+
+				  map = new google.maps.Map(document.getElementById('map_canvas'),
+					mapOptions);
+
+			}; // end of initialize
+
+			function loadScript() {
+				var script = document.createElement('script');
+				script.type = 'text/javascript';
+				script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD0opNahZE7NYWM1FyCypBvByrBPifPsvM&&v=3&' +
+					'callback=initialize';
+				document.body.appendChild(script);
+			}
+
+			function reloadMap(){
+				google.maps.event.trigger(map, 'resize');
+			}
+
+			addLoadEvent(loadScript);
+		</script>
+
 		<div id="footer">
 			<div class="col-md-6 col-sm-6">
 				<p class="footer-text"><a href="https://github.com/Maes95/Practica2SD.git"><i class="fa fa-github icon-github"></i></a>Michel Maes Bermejo - Pablo Fuente Pérez</p>
@@ -217,6 +249,8 @@
 		<script src="resources/js/main.js"></script>
 		<script src="resources/js/transition.js"></script>
 	</div>
+
+
 </body>
 
 </html>

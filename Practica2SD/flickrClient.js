@@ -1,6 +1,20 @@
 // Funcion que recoge los valores de la búsqueda (Se activa en el botón "Filtrar" del menu)
 
-$(function(){getPhotos();});
+$(function(){
+  getPhotos();
+});
+
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      oldonload();
+      func();
+    }
+  }
+}
 
 var filtros = {
   tags: undefined,
@@ -9,6 +23,7 @@ var filtros = {
   max_taken_date: undefined,
   min_upload_date: undefined,
   max_upload_date: undefined,
+  bbox: undefined,
   format: "json"
 };
 
@@ -30,15 +45,15 @@ function getImages() {
       console.log("max-taken-date " + filtros.max_taken_date);
       break;
 
-    // BUSQUEDA POR TAMAÑO
-    /*case '#tamanyo-form':
+    // BUSQUEDA POR LOCALIZACION
+    case '#localizacion-form':
       // En el caso del tamaño, tendremos que recoger 2 parámetros
-      var inputs = $(query_type).find("input");
-      var width  = inputs[0].value;
-      var height = inputs[1].value;
-      console.log("Anchura " + width);
-      console.log("Altura " + height);
-      break;*/
+      var longSW = Math.min(map.getBounds().getSouthWest().lng(), -180);
+      var latSW = Math.max(map.getBounds().getSouthWest().lat(), -90);
+      var longNE = Math.min(map.getBounds().getNorthEast().lng(), 180);
+      var latNE = Math.max(map.getBounds().getNorthEast().lat(), 90);
+      filtros.bbox = longSW + "," +  latSW + "," + longNE + "," + latNE;
+      break;
 
     // BUSQUEDA POR TITULO
     case '#titulo-form':
@@ -71,8 +86,6 @@ function getImages() {
 
   // Cargamos nuestros filtros (los no usados toman el valor undefined)
 
-
-
   // Cargamos los filtros en la petición
   getPhotos(filtros);
   checkFilters();
@@ -80,6 +93,7 @@ function getImages() {
 
 function getImagesAndHideForm (){
   $(".form-control-wrapper.menu-form").hide(300);
+  $("#map_canvas").hide(300);
   $("#boton-enviar").hide(300);
   getImages();
   $("input").each(function() {resetForm($(this));});
@@ -179,6 +193,7 @@ function checkFilters() {
 }
 
 function tagToFalse(tag){
+  filtros.bbox = undefined;
   switch(tag){
     case 'filtro_fecha_captura':
       filtros.min_taken_date = undefined;

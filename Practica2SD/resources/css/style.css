@@ -5,13 +5,22 @@
     font-style: normal;
 }
 
+#map_canvas {
+  width:400px;
+  height:250px;
+  margin-top: -10px;
+  margin-bottom: 35px;
+  display: none;
+  border-radius: 2%;
+}
+
 html {
   height: 100%;
 }
 
 body {
   height: 100%;
-  background-color: #2F3238;
+  background-color: #1E1E1E !important;
 }
 
 .ca-menu{
@@ -82,7 +91,7 @@ body {
     display: none;
 }
 .ca-menu li:hover{
-    border-color: #2F3238;
+    border-color: #1E1E1E;
     z-index: 999;
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
@@ -91,14 +100,14 @@ body {
     transform: scale(1.1);
 }
 .ca-menu li:hover .ca-icon{
-    color: #2F3238;
+    color: #1E1E1E;
     font-size: 19px;
-    text-shadow: 0px 0px 1px #2F3238;
+    text-shadow: 0px 0px 1px #1E1E1E;
     -webkit-animation: moveFromBottom 300ms ease;
     -moz-animation: moveFromBottom 400ms ease;
 }
 .ca-menu li:hover .ca-main{
-    color: #2F3238;
+    color: #1E1E1E;
     -webkit-animation: moveFromBottom 500ms ease;
     -moz-animation: moveFromBottom 500ms ease;
     -ms-animation: moveFromBottom 500ms ease;
@@ -143,6 +152,7 @@ body {
 #fila-menu {
   margin-top: 20px;
   margin-bottom: 30px;
+  -webkit-transition: margin-top;
 }
 
 a li:hover {
@@ -222,10 +232,10 @@ a li:hover {
 	position:absolute;
 	bottom:0;
 	left:0;
-	background-color: #2f3238;
-    -webkit-box-shadow: 0 -6px 6px -6px #171A20;
-    -moz-box-shadow: 0 -6px 6px -6px #171A20;
-    box-shadow: 0 -6px 6px -6px #171A20;
+	background-color: #1E1E1E;
+    -webkit-box-shadow: 0 -6px 6px -6px #101216;
+    -moz-box-shadow: 0 -6px 6px -6px #101216;
+    box-shadow: 0 -6px 6px -6px #101216;
     border-color: #4D515A;
 }
 
@@ -335,4 +345,8 @@ a li:hover {
 .tag-icon {
   font-size: 1.7em;
   margin-right: 5px;
+}
+
+.add-right-margin {
+  margin-right: 15px;
 }
