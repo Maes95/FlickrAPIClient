@@ -48,10 +48,10 @@ function getImages() {
     // BUSQUEDA POR LOCALIZACION
     case '#localizacion-form':
       // En el caso del tamaño, tendremos que recoger 2 parámetros
-      var longSW = Math.min(rectangle.getBounds().getSouthWest().lng(), -180);
+      var longSW = Math.max(rectangle.getBounds().getSouthWest().lng(), -180);
       var latSW = Math.max(rectangle.getBounds().getSouthWest().lat(), -90);
       var longNE = Math.min(rectangle.getBounds().getNorthEast().lng(), 180);
-      var latNE = Math.max(rectangle.getBounds().getNorthEast().lat(), 90);
+      var latNE = Math.min(rectangle.getBounds().getNorthEast().lat(), 90);
       filtros.bbox = longSW + "," +  latSW + "," + longNE + "," + latNE;
       break;
 
@@ -82,7 +82,7 @@ function getImages() {
 
   // Borramos el resultado anterior
   $(".grid__item").remove();
-  $("img").remove();
+  $(".imagen-flickr").remove();
 
   // Cargamos nuestros filtros (los no usados toman el valor undefined)
 
@@ -139,7 +139,7 @@ function getHtml(url_img, size, msg) {
   html += '">';
   html += '<a href="';
   html += url_img;
-  html += '" class="img-wrap image"><img src="';
+  html += '" class="img-wrap image"><img class="imagen-flickr" src="';
   html += url_img;
   html += '" alt="img04" />';
   html += '<div class="description description--grid">';

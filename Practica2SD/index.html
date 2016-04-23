@@ -214,10 +214,11 @@
 					},
 					zoom: 11,
 					panControl: false,
+					mapTypeControl: false,
  					scaleControl: true,
  					streetViewControl: false,
  					overviewMapControl: false,
- 					rotateControl: true
+					signInControl: false
 				});
 
 				var bounds = {
@@ -243,7 +244,7 @@
 		</script>
 
 		<script>function reloadMap(){google.maps.event.trigger(map, 'resize');}</script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0opNahZE7NYWM1FyCypBvByrBPifPsvM&amp;callback=initMap&amp;signed_in=true" async="" defer=""></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0opNahZE7NYWM1FyCypBvByrBPifPsvM&amp;callback=initMap" async="" defer=""></script>
 
 		<div id="footer">
 			<div class="col-md-6 col-sm-6">

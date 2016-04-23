@@ -27,7 +27,8 @@ function menuFunc(e) {
         case 'localizacion-button':
             query_type = '#localizacion-form';
             $('#map').show(300);
-            setTimeout(function() { reloadMap(); }, 500);
+            console.log("animacion");
+            setTimeout(function() { reloadMap(); }, 610);
 						$('#boton-enviar').addClass('menos-altura');
             break;
         case 'titulo-button':
