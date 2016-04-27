@@ -89,11 +89,11 @@
 							</div>
 
 							<div class="col-md-2 col-menu-button">
-								<a href="#">
+								<a id="views-button" onmousedown="menuFunc(this)">
 									<li class="menu-item">
-										<span class="ca-icon"><i class="fa fa-star fa-2x option-button"></i></span>
+										<span class="ca-icon"><i class="fa fa-eye fa-2x option-button"></i></span>
 										<div class="ca-content">
-											<h2 class="ca-main">Favoritas</h2>
+											<h2 class="ca-main">Visitas</h2>
 										</div>
 									</li>
 								</a>
@@ -141,6 +141,13 @@
 							</div>
 						</div>
 
+						<div id="views-form" class="form-control-wrapper menu-form">
+							<div class="form-group add-right-margin">
+								<input type="number" value=0 class="form-control" id="etiquetas-text" placeholder="Introduzca el numero mínimo de visitas">
+								<label for="etiquetas-text">Filtro por numero de visitas</label>
+							</div>
+						</div>
+
 						<div id="fecha-subida-form" class="form-control-wrapper menu-form">
 							<div class="form-group">
 								<div class="col-md-6">
@@ -170,12 +177,12 @@
 				<div id="tituloTagText" class="display-inline-tag">Titulo</div><i class="material-icons small-size" onclick="tagToFalse('filtro_titulo')">close</i></div>
 			<div id="etiquetasTag" class="ui label filter-tag"><i class="fa fa-tags fa-2x tag-icon"></i>
 				<div id="etiquetasTagText" class="display-inline-tag">Etiquetas</div><i class="material-icons small-size" onclick="tagToFalse('filtro_etiquetas')">close</i></div>
-			<div id="favoritosTag" class="ui label filter-tag"><i class="fa fa-star fa-2x tag-icon"></i>
-				<div id="favoritosTagText" class="display-inline-tag">Favoritos</div><i class="material-icons small-size" onclick="tagToFalse('filtro_favoritas')">close</i></div>
 			<div id="fechaSubidaTag" class="ui label filter-tag"><i class="fa fa-cloud-upload fa-2x tag-icon"></i>
 				<div id="fechaSubidaTagText" class="display-inline-tag">Fecha subida</div><i class="material-icons small-size" onclick="tagToFalse('filtro_fecha_subida')">close</i></div>
 			<div id="localizacionTag" class="ui label filter-tag"><i class="fa fa-map-marker fa-2x tag-icon"></i>
 				<div id="localizacionTagText" class="display-inline-tag">Localización</div><i class="material-icons small-size" onclick="tagToFalse('filtro_localizacion')">close</i></div>
+			<div id="visitasTag" class="ui label filter-tag"><i class="fa fa-eye fa-2x tag-icon"></i>
+				<div id="visitasTagText" class="display-inline-tag">Visitas</div><i class="material-icons small-size" onclick="tagToFalse('filtro_visitas')">close</i></div>
 		</div>
 
 		<div id="content">
@@ -217,9 +224,9 @@
 					zoom: 11,
 					panControl: false,
 					mapTypeControl: false,
- 					scaleControl: true,
- 					streetViewControl: false,
- 					overviewMapControl: false,
+					scaleControl: true,
+					streetViewControl: false,
+					overviewMapControl: false,
 					signInControl: false
 				});
 
@@ -245,7 +252,11 @@
 			// Show the new coordinates for the rectangle in an info window.
 		</script>
 
-		<script>function reloadMap(){google.maps.event.trigger(map, 'resize');}</script>
+		<script>
+			function reloadMap() {
+				google.maps.event.trigger(map, 'resize');
+			}
+		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0opNahZE7NYWM1FyCypBvByrBPifPsvM&amp;callback=initMap" async="" defer=""></script>
 
 		<div id="footer">
@@ -258,7 +269,7 @@
 		</div>
 		<!-- SCRIPTS ANIMACIONES -->
 
-		<script src="resources/js/menu.js"></script>
+		<script src="menu.js"></script>
 		<script src="resources/js/imagesloaded.pkgd.min.js"></script>
 		<script src="resources/js/masonry.pkgd.min.js"></script>
 		<script src="resources/js/classie.js"></script>

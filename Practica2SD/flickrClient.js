@@ -5,12 +5,12 @@ $(function(){
 });
 
 function addLoadEvent(func) {
-  var oldonload = window.onload;
+  var oldOnload = window.onload;
   if (typeof window.onload != 'function') {
     window.onload = func;
   } else {
     window.onload = function() {
-      oldonload();
+      oldOnload();
       func();
     }
   }
@@ -24,10 +24,12 @@ var filtros = {
   min_upload_date: undefined,
   max_upload_date: undefined,
   bbox: undefined,
+  extras: undefined,
   format: "json"
 };
 
 var numImagenes = 0;
+var minViews = undefined;
 
 function getImages() {
   // Query type indica el tipo de busqueda (Fecha de captura, tamaño, titulo ...) para poder acceder al valor de su formulario
@@ -67,6 +69,13 @@ function getImages() {
       console.log("Etiquetas " + filtros.tags);
       break;
 
+    // BUSQUEDA POR NUMERO DE VISITAS
+    case '#views-form':
+      filtros.extras = "views";
+      minViews = value;
+      console.log("Visitas " + value);
+      break;
+
     // BUSQUEDA POR FECHA DE SUBIDA
     case '#fecha-subida-form':
       var inputs = $(query_type).find("input");
@@ -77,7 +86,7 @@ function getImages() {
       break;
 
     default:
-      console.error("ERROR: Búsqueda no valida");
+      console.log("Búsqueda no valida");
   }
 
   // Borramos el resultado anterior
@@ -88,7 +97,7 @@ function getImages() {
   // Cargamos nuestros filtros (los no usados toman el valor undefined)
 
   // Cargamos los filtros en la petición
-  getPhotos(filtros);
+  getPhotos();
   checkFilters();
 }
 
@@ -102,7 +111,7 @@ function getImagesAndHideForm (){
 
 // Funcion que carga las fotos
 
-function getPhotos(filtros) {
+function getPhotos() {
   console.log(filtros);
   numImagenes = 0;
 
@@ -123,8 +132,9 @@ function getPhotos(filtros) {
 
         var html = getHtml(url_img, size, msg);
 
-        $(".grid").append(html);
-
+        if(!filtros.extras || parseInt(photo.views) >= minViews){
+          $(".grid").append(html);
+        }
       });
       // Una vez cargadas todas las fotos, se añaden animaciones
       // Funcion del archivo library/js/animations.js
@@ -195,6 +205,14 @@ function checkFilters() {
     $("#fechaSubidaTagText").text(s[0] + " | " + s[1]);
     $('#fechaSubidaTag').addClass("display-inline-tag");
   }
+
+  if (filtros.extras === undefined){
+    $('#visitasTag').removeClass("display-inline-tag");
+  }
+  else{
+    $("#visitasTagText").text("minimo "+minViews+" visitas");
+    $('#visitasTag').addClass("display-inline-tag");
+  }
 }
 
 function tagToFalse(tag){
@@ -215,6 +233,9 @@ function tagToFalse(tag){
     case 'filtro_fecha_subida':
       filtros.min_upload_date = undefined;
       filtros.max_upload_date = undefined;
+      break;
+    case 'filtro_visitas':
+      filtros.extras = undefined;
       break;
   }
   query_type = "none";
