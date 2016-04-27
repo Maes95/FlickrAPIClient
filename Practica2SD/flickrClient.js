@@ -178,10 +178,14 @@ function checkFilters() {
     $('#etiquetasTag').addClass("display-inline-tag");
   }
 
-  /*if (!filtro_favoritas)
-    $('#favoritasTag').removeClass("display-inline-tag");
-  else
-    $('#favoritasTag').addClass("display-inline-tag");*/
+  if (filtros.bbox === undefined){
+    $('#localizacionTag').removeClass("display-inline-tag");
+  }
+  else{
+    var s = getFormattedCoords();
+    $("#localizacionTagText").text(s);
+    $('#localizacionTag').addClass("display-inline-tag");
+  }
 
   if (filtros.min_upload_date === undefined && filtros.max_upload_date === undefined){
     $('#fechaSubidaTag').removeClass("display-inline-tag");
@@ -194,7 +198,6 @@ function checkFilters() {
 }
 
 function tagToFalse(tag){
-  filtros.bbox = undefined;
   switch(tag){
     case 'filtro_fecha_captura':
       filtros.min_taken_date = undefined;
@@ -206,10 +209,9 @@ function tagToFalse(tag){
     case 'filtro_etiquetas':
       filtros.tags = undefined;
       break;
-    /*case 'filtro_favoritas':
-
-
-      break;*/
+    case 'filtro_localizacion':
+      filtros.bbox = undefined;
+      break;
     case 'filtro_fecha_subida':
       filtros.min_upload_date = undefined;
       filtros.max_upload_date = undefined;
@@ -250,6 +252,15 @@ function getFormattedtDate(t){
         s[1] = filtros.max_upload_date;
       }
       break;
+  }
+  return s;
+}
+
+function getFormattedCoords(){
+  var a = filtros.bbox.split(",");
+  var s = "";
+  for (var cAux of a){
+    s += cAux.substring(0,5) + ", ";
   }
   return s;
 }
