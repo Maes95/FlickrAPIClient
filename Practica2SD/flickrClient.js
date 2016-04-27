@@ -82,7 +82,8 @@ function getImages() {
 
   // Borramos el resultado anterior
   $(".grid__item").remove();
-  $(".imagen-flickr").remove();
+  $("img.imagen-flickr").remove();
+  $("img.original").remove();
 
   // Cargamos nuestros filtros (los no usados toman el valor undefined)
 
