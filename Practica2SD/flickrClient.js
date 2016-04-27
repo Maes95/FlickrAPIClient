@@ -210,7 +210,7 @@ function checkFilters() {
     $('#visitasTag').removeClass("display-inline-tag");
   }
   else{
-    $("#visitasTagText").text("minimo "+minViews+" visitas");
+    $("#visitasTagText").text("Mínimo "+minViews+" visitas");
     $('#visitasTag').addClass("display-inline-tag");
   }
 }
