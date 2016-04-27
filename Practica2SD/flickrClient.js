@@ -259,8 +259,11 @@ function getFormattedtDate(t){
 function getFormattedCoords(){
   var a = filtros.bbox.split(",");
   var s = "";
+  var i = 1;
   for (var cAux of a){
-    s += cAux.substring(0,5) + ", ";
+    s += cAux.substring(0,5);
+    if (i < 4) s += ", ";
+    i++;
   }
   return s;
 }
