@@ -161,6 +161,8 @@ function getHtml(url_img, size, msg) {
   return html;
 }
 
+
+//Funcion que muestra o esconde las etiquetas de las busquedas
 function checkFilters() {
 
   if (filtros.min_taken_date === undefined && filtros.max_taken_date === undefined){
@@ -215,6 +217,7 @@ function checkFilters() {
   }
 }
 
+//Funcion que elimina del objeto 'filtros' aquellos parametros de busqueda eliminados (al cerrar etieutas)
 function tagToFalse(tag){
   switch(tag){
     case 'filtro_fecha_captura':
@@ -242,10 +245,12 @@ function tagToFalse(tag){
   getImages();
 }
 
+//Funcion para limpiar los formularios
 function resetForm (form){
   $(form).val("");
 }
 
+//Formatear fechas
 function getFormattedtDate(t){
   var s = [];
   switch(t){
@@ -277,6 +282,7 @@ function getFormattedtDate(t){
   return s;
 }
 
+//Formatear coordenadas
 function getFormattedCoords(){
   var a = filtros.bbox.split(",");
   var s = "";

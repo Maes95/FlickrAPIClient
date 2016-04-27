@@ -39,9 +39,11 @@
 
 <body class="demo-6">
 	<div id="wrapper">
-		<div id="header">
+		<div id="header"> 
 			<header>
 				<div id="row-menu" class="row">
+				
+					<!-- MENU -->
 					<div id="fila-menu" class="col-md-6">
 						<ul class="ca-menu col-md-12">
 							<div class="col-md-2 col-menu-button">
@@ -111,7 +113,9 @@
 							</div>
 						</ul>
 					</div>
-
+					<!-- FIN MENU -->
+					
+					<!-- FORMULARIOS -->
 					<div class="col-md-6 col-xs-12 vertical-center search-fields">
 
 						<div id="fecha-captura-form" class="form-control-wrapper menu-form">
@@ -166,10 +170,13 @@
 						<button id="boton-enviar" onClick="getImagesAndHideForm()" class="btn btn-info">Filtrar</button>
 
 					</div>
+					<!-- FIN FORMULARIOS -->
+					
 				</div>
 			</header>
 		</div>
-
+		
+		<!-- ETIQUETAS DE FILTROS -->
 		<div id="fila-filtros" class="row">
 			<div id="fechaCapturaTag" class="ui label filter-tag"><i class="fa fa-camera fa-2x tag-icon"></i>
 				<div id="fechaCapturaTagText" class="display-inline-tag">Fecha captura</div><i class="material-icons small-size" onclick="tagToFalse('filtro_fecha_captura')">close</i></div>
@@ -184,7 +191,9 @@
 			<div id="visitasTag" class="ui label filter-tag"><i class="fa fa-eye fa-2x tag-icon"></i>
 				<div id="visitasTagText" class="display-inline-tag">Visitas</div><i class="material-icons small-size" onclick="tagToFalse('filtro_visitas')">close</i></div>
 		</div>
-
+		<!-- FIN ETIQUETAS DE FILTROS -->
+	
+		<!-- CONTENEDOR DE FOTOS -->
 		<div id="content">
 			<div class="container">
 				<div class="content">
@@ -205,7 +214,9 @@
 				</div>
 			</div>
 		</div>
-
+		<!-- FIN CONTENEDOR DE FOTOS -->
+		
+		<!-- SCRIPT DE CARGA DE GOOGLE MAPS -->
 		<script>
 			// This example adds a user-editable rectangle to the map.
 			// When the user changes the bounds of the rectangle,

@@ -13,10 +13,11 @@
 
 var query_type = "none";
 
+//Funcion de servicio del menu
 function menuFunc(e) {
 
-		$('#boton-enviar').removeClass('menos-altura');
-		$('#boton-enviar').show(300);
+	$('#boton-enviar').removeClass('menos-altura');
+	$('#boton-enviar').show(300);
     $('.menu-form').hide(300);
     $('#map').hide(300);
     switch (e.id) {
