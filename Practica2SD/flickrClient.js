@@ -113,6 +113,7 @@ function getImagesAndHideForm (){
 
 function getPhotos() {
   console.log(filtros);
+  $('#numResultadosTagText').css('display', 'none');
   numImagenes = 0;
 
   url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + api_key + "&user_id=" + user_id + "&format=json&nojsoncallback=1";
@@ -122,7 +123,6 @@ function getPhotos() {
       console.log(data);
       console.log(url);
       $.each(data.photos.photo, function(i, photo) {
-        numImagenes++;
 
         var msg = photo.title.substr(0, 1).toUpperCase() + photo.title.substr(1);
 
@@ -133,12 +133,15 @@ function getPhotos() {
         var html = getHtml(url_img, size, msg);
 
         if(!filtros.extras || parseInt(photo.views) >= minViews){
+          numImagenes++;
           $(".grid").append(html);
         }
       });
       // Una vez cargadas todas las fotos, se añaden animaciones
       // Funcion del archivo library/js/animations.js
       setAnimation();
+      $('#numResultadosTagText').text(numImagenes);
+      $('#numResultadosTagText').css('display', 'inline-block');
     });
 }
 
@@ -165,6 +168,8 @@ function getHtml(url_img, size, msg) {
 //Funcion que muestra o esconde las etiquetas de las busquedas
 function checkFilters() {
 
+  var someFilter = false;
+
   if (filtros.min_taken_date === undefined && filtros.max_taken_date === undefined){
     $('#fechaCapturaTag').removeClass("display-inline-tag");
   }
@@ -172,6 +177,7 @@ function checkFilters() {
     var s = getFormattedtDate("taken");
     $("#fechaCapturaTagText").text(s[0]  + " | " + s[1]);
     $('#fechaCapturaTag').addClass("display-inline-tag");
+    someFilter = true;
   }
 
   if (filtros.text === undefined){
@@ -180,6 +186,7 @@ function checkFilters() {
   else{
     $("#tituloTagText").text(filtros.text);
     $('#tituloTag').addClass("display-inline-tag");
+    someFilter = true;
   }
 
   if (filtros.tags === undefined){
@@ -188,6 +195,7 @@ function checkFilters() {
   else{
     $("#etiquetasTagText").text(filtros.tags);
     $('#etiquetasTag').addClass("display-inline-tag");
+    someFilter = true;
   }
 
   if (filtros.bbox === undefined){
@@ -197,6 +205,7 @@ function checkFilters() {
     var s = getFormattedCoords();
     $("#localizacionTagText").text(s);
     $('#localizacionTag').addClass("display-inline-tag");
+    someFilter = true;
   }
 
   if (filtros.min_upload_date === undefined && filtros.max_upload_date === undefined){
@@ -206,6 +215,7 @@ function checkFilters() {
     var s = getFormattedtDate("upload");
     $("#fechaSubidaTagText").text(s[0] + " | " + s[1]);
     $('#fechaSubidaTag').addClass("display-inline-tag");
+    someFilter = true;
   }
 
   if (filtros.extras === undefined){
@@ -214,6 +224,14 @@ function checkFilters() {
   else{
     $("#visitasTagText").text("Mínimo "+minViews+" visitas");
     $('#visitasTag').addClass("display-inline-tag");
+    someFilter = true;
+  }
+
+  if (someFilter){
+    $('#numResultadosTag').show();
+  }
+  else {
+    $('#numResultadosTag').hide();
   }
 }
 

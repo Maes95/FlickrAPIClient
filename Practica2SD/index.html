@@ -39,10 +39,10 @@
 
 <body class="demo-6">
 	<div id="wrapper">
-		<div id="header"> 
+		<div id="header">
 			<header>
 				<div id="row-menu" class="row">
-				
+
 					<!-- MENU -->
 					<div id="fila-menu" class="col-md-6">
 						<ul class="ca-menu col-md-12">
@@ -73,7 +73,7 @@
 									<li class="menu-item">
 										<span class="ca-icon"><i class="fa fa-font fa-2x option-button"></i></span>
 										<div class="ca-content">
-											<h2 class="ca-main">Título</h2>
+											<h2 class="ca-main">Texto</h2>
 										</div>
 									</li>
 								</a>
@@ -114,7 +114,7 @@
 						</ul>
 					</div>
 					<!-- FIN MENU -->
-					
+
 					<!-- FORMULARIOS -->
 					<div class="col-md-6 col-xs-12 vertical-center search-fields">
 
@@ -134,7 +134,7 @@
 						<div id="titulo-form" class="form-control-wrapper menu-form">
 							<div class="form-group add-right-margin">
 								<input type="text" class="form-control" id="titulo-text" placeholder="">
-								<label for="titulo-text">Palabras en el título</label>
+								<label for="titulo-text">Palabras en la foto</label>
 							</div>
 						</div>
 
@@ -171,17 +171,19 @@
 
 					</div>
 					<!-- FIN FORMULARIOS -->
-					
+
 				</div>
 			</header>
 		</div>
-		
+
 		<!-- ETIQUETAS DE FILTROS -->
 		<div id="fila-filtros" class="row">
+			<div id="numResultadosTag" class="ui label">Resultados
+				<div id="numResultadosTagText" class="detail">Número de resultados</div></div>
 			<div id="fechaCapturaTag" class="ui label filter-tag"><i class="fa fa-camera fa-2x tag-icon"></i>
 				<div id="fechaCapturaTagText" class="display-inline-tag">Fecha captura</div><i class="material-icons small-size" onclick="tagToFalse('filtro_fecha_captura')">close</i></div>
 			<div id="tituloTag" class="ui label filter-tag"><i class="fa fa-font fa-2x tag-icon"></i>
-				<div id="tituloTagText" class="display-inline-tag">Titulo</div><i class="material-icons small-size" onclick="tagToFalse('filtro_titulo')">close</i></div>
+				<div id="tituloTagText" class="display-inline-tag">Texto</div><i class="material-icons small-size" onclick="tagToFalse('filtro_titulo')">close</i></div>
 			<div id="etiquetasTag" class="ui label filter-tag"><i class="fa fa-tags fa-2x tag-icon"></i>
 				<div id="etiquetasTagText" class="display-inline-tag">Etiquetas</div><i class="material-icons small-size" onclick="tagToFalse('filtro_etiquetas')">close</i></div>
 			<div id="fechaSubidaTag" class="ui label filter-tag"><i class="fa fa-cloud-upload fa-2x tag-icon"></i>
@@ -192,11 +194,11 @@
 				<div id="visitasTagText" class="display-inline-tag">Visitas</div><i class="material-icons small-size" onclick="tagToFalse('filtro_visitas')">close</i></div>
 		</div>
 		<!-- FIN ETIQUETAS DE FILTROS -->
-	
+
 		<!-- CONTENEDOR DE FOTOS -->
 		<div id="content">
 			<div class="container">
-				<div class="content">
+				<div id="contenedor-fotos" class="content">
 
 					<!-- FOTOS PEQUEÑAS -->
 					<div id="#contenedor_imagenes" class="grid sequenced images">
@@ -215,7 +217,7 @@
 			</div>
 		</div>
 		<!-- FIN CONTENEDOR DE FOTOS -->
-		
+
 		<!-- SCRIPT DE CARGA DE GOOGLE MAPS -->
 		<script>
 			// This example adds a user-editable rectangle to the map.

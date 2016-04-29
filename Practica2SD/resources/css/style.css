@@ -350,3 +350,13 @@ a li:hover {
 .add-right-margin {
   margin-right: 15px;
 }
+
+#numResultadosTag {
+  float: left;
+  margin-left: 9%;
+  display: none;
+}
+
+#numResultadosTagText {
+  display: none;
+}
